@@ -1,5 +1,5 @@
 from unittest import TestCase
-import unittest 
+import unittest
 from mock import MagicMock
 from mock import patch
 
@@ -11,7 +11,7 @@ class ViewMock(MagicMock):
 	def id(self):
 		return self._id
 	def is_dirty(self):
-		return self._dirty 
+		return self._dirty
 	def is_scratch(self):
 		return self._scratch
 
@@ -49,26 +49,26 @@ class TestZenTabs(TestCase):
 
 	def setUp(self):
 		self.sublime_mock = SublimeMock()
-		self.sublime_mock.sublime.log.return_value		
+		self.sublime_mock.sublime.log.return_value
 		self.sublime_plugin_mock = SublimeMock()
 		self.sublime_plugin_mock.sublime.log.return_value = True
 		modules = {
-		   	'sublime': self.sublime_mock,
-		   	'sublime_plugin': self.sublime_plugin_mock
-		}	 
+			'sublime': self.sublime_mock,
+			'sublime_plugin': self.sublime_plugin_mock
+		}
 		self.module_patcher = patch.dict('sys.modules', modules)
-		self.module_patcher.start()		
+		self.module_patcher.start()
 
 		from ZenTabs import ZenTabsListener
-		self.tabs_mock = ZenTabsListener()	
+		self.tabs_mock = ZenTabsListener()
 
 	def tearDown(self):
-		self.module_patcher.stop()	
+		self.module_patcher.stop()
 
-   	def test1(self):
+	def test1(self):
 		tabListener = self.tabs_mock
 		sublime = self.sublime_mock
-		
+
 		for i in range(10):
 			self.activate(i)
 		self.printStat("opened 10 tabs[0...9]")
@@ -137,4 +137,4 @@ class TestZenTabs(TestCase):
 		print "w_tabs", " ".join(str(v.id()) for v in self.sublime_mock.active_window().views())
 
 if __name__ == '__main__':
-    unittest.main()
+	unittest.main()

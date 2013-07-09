@@ -13,7 +13,7 @@ class WindowTabs(object):
 		self.remove_from_list(self.opened_tab_ids, view.id())
 
 	def renew_list(self, p_list, view_id):
-		if self.get_view_by_id(view_id) is not None: 
+		if self.get_view_by_id(view_id) is not None:
 			if view_id in p_list:
 				p_list.append(p_list.pop(p_list.index(view_id)))
 			else:
@@ -28,7 +28,7 @@ class WindowTabs(object):
 		for v in sublime.active_window().views():
 			if v.id() == view_id:
 				view = v
-				break		
+				break
 		return view
 
 class WindowSet(object):
