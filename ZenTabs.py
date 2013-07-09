@@ -2,7 +2,7 @@ import sublime, sublime_plugin
 
 g_setting = sublime.load_settings('zentabs.sublime-settings')
 
-g_tabLimit = g_setting.get('open_tab_limit', 10)
+g_tabLimit = g_setting.get('open_tab_limit') or 10 # probably bug in ST3. "get" returns None even default value was defined
 
 def remove_from_list(p_list, view_id):
 	if view_id in p_list:
@@ -80,6 +80,6 @@ class ZenTabsListener(sublime_plugin.EventListener):
 				break
 
 	def printStat(self):
-		print "u_tabs", " ".join(str(v_id) for v_id in self.edited_tab_ids)
-		print "o_tabs", " ".join(str(v_id) for v_id in self.opened_tab_ids)
-		print "w_tabs", " ".join(str(v.id()) for v in sublime.active_window().views())
+		print("u_tabs", " ".join(str(v_id) for v_id in self.edited_tab_ids))
+		print("o_tabs", " ".join(str(v_id) for v_id in self.opened_tab_ids))
+		print("w_tabs", " ".join(str(v.id()) for v in sublime.active_window().views()))

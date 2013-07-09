@@ -35,5 +35,5 @@ class WindowSet(object):
 	window_set = {}
 
 	def add_window(self, win_id):
-		if not window_set.has_key(win_id):
+		if win_id not in window_set:
 			window_set[win_id] = []
