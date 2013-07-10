@@ -5,7 +5,6 @@ if __name__ == '__main__':
 
 	import mock
 
-
 	class ViewMock(mock.MagicMock):
 		_id = 0
 		_dirty = False
@@ -46,7 +45,6 @@ if __name__ == '__main__':
 
 		def set_timeout(testObj, func, timeout):
 			func()
-
 
 
 	class TestZenTabs(TestCase):
@@ -140,6 +138,5 @@ if __name__ == '__main__':
 			print("u_tabs", " ".join(str(v_id) for v_id in self.tabs_mock.edited_tab_ids))
 			print("o_tabs", " ".join(str(v_id) for v_id in self.tabs_mock.opened_tab_ids))
 			print("w_tabs", " ".join(str(v.id()) for v in self.sublime_mock.active_window().views()))
-
 
 	unittest.main()

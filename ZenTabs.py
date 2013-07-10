@@ -1,8 +1,15 @@
 import sublime, sublime_plugin
 
-g_setting = sublime.load_settings('zentabs.sublime-settings')
 
-g_tabLimit = g_setting.get('open_tab_limit') or 10 # probably bug in ST3. "get" returns None even default value was defined
+g_tabLimit = 50
+def plugin_loaded():
+    global g_tabLimit
+    settings = sublime.load_settings('zentabs.sublime-settings')
+    g_tabLimit = settings.get('open_tab_limit', g_tabLimit)
+
+# temporary because ST2 doesn't have plugin_loaded event
+if int(sublime.version()) < 3000:
+    plugin_loaded()
 
 def remove_from_list(p_list, view_id):
 	if view_id in p_list:
